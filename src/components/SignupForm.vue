@@ -3,18 +3,18 @@
         <n-space vertical>
             <n-input-group class="mb-2">
                 <n-input v-model:value="data.name" type="text" :placeholder="$t('auth_signup_input_placeholder_name')"
-                    class="w-50">
+                    class="w-50" :feedback="nameFeedback">
                     <!-- <template #prefix>
                     <n-icon :component="PersonOutline" />
                 </template> -->
                 </n-input>
                 <n-input v-model:value="data.surname" type="text"
-                    :placeholder="$t('auth_signup_input_placeholder_surname')" class="w-50">
+                    :placeholder="$t('auth_signup_input_placeholder_surname')" class="w-50" :feedback="surnameFeedback">
                 </n-input>
             </n-input-group>
             <n-form-item path="username">
-                <n-input v-model:value="data.username" type="text"
-                    :placeholder="$t('auth_signup_input_placeholder_un')">
+                <n-input v-model:value="data.username" type="text" :placeholder="$t('auth_signup_input_placeholder_un')"
+                    :feedback="usernameFeedback">
                     <template #prefix>
                         <n-icon :component="PersonOutline" />
                     </template>
@@ -30,7 +30,7 @@
             </n-form-item>
             <n-form-item path="password">
                 <n-input v-model:value="data.password" type="password" show-password-on="mousedown"
-                    :placeholder="$t('auth_signup_input_placeholder_pwd')">
+                    :placeholder="$t('auth_signup_input_placeholder_pwd')" :feedback="passwordFeedback">
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
                     </template>
@@ -38,7 +38,7 @@
             </n-form-item>
             <n-form-item path="password2">
                 <n-input v-model:value="data.password2" type="password" show-password-on="mousedown"
-                    :placeholder="$t('auth_signup_input_placeholder_pwd_confirm')">
+                    :placeholder="$t('auth_signup_input_placeholder_pwd_confirm')" :feedback="passwordFeedback">
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
                     </template>
@@ -55,13 +55,14 @@
     </n-form>
 </template>
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed} from 'vue'
 import { LockClosedOutline, PersonOutline, At } from '@vicons/ionicons5'
 import { useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
 import { genOptions, emailOptions } from '../utils/index'
 import { signupFormRules } from '../rules/index.js'
 import authService from '../services/authService'
+import {nameFeedback,surnameFeedback,usernameFeedback,passwordFeedback} from '../utils/feedbacks/index'
 export default defineComponent({
     components: {
         LockClosedOutline,
@@ -85,6 +86,20 @@ export default defineComponent({
             options: genOptions(),
             emailOptions: emailOptions(data),
             signupSpin,
+
+            nameFeedback: computed(() => {
+                return nameFeedback(data.value.name);
+            }),
+            surnameFeedback: computed(() => {
+                return surnameFeedback(data.value.surname);
+            }),
+            usernameFeedback: computed(() => {
+                return usernameFeedback(data.value.username);
+            }),
+            passwordFeedback: computed(() => {
+                return passwordFeedback(data.value.password);
+            }),
+
             signUp(e) {
                 signupSpin.value = true;
                 e.preventDefault();
