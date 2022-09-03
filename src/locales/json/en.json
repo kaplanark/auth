@@ -1,0 +1,44 @@
+{
+    "info":{
+        "name": "English",
+        "code": "en"
+    },
+    "rp_title":"Reset your password",
+    "rp_text": "Enter your user account's verified email address and we will send you a password reset link.",
+    "rp_btn":"Send password reset email",
+    "rp_input_placeholder":"Enter your email adress",
+    "rp_back_btn":"Go to sign in",
+
+    "auth_signin_title":"Sign in",
+    "auth_signin_text":"Sign in to your account",
+    "auth_signin_btn":"Sign in",
+    "auth_signin_input_placeholder":"Username or e-mail",
+    "auth_signin_input_placeholder_pwd":"Enter your password",
+    "auth_signin_back_btn":"Go to sign up",
+    "auth_signin_forgot_pwd_btn":"Forgot your password?",
+
+    "auth_signup_title":"Sing up",
+    "auth_signup_text":"Create your account",
+    "auth_signup_btn":"Sing up",
+    "auth_signup_input_placeholder_name":"Name",
+    "auth_signup_input_placeholder_surname":"Surname",
+    "auth_signup_input_placeholder_un":"Username",
+    "auth_signup_input_placeholder_pwd":"Password",
+    "auth_signup_input_placeholder_pwd_confirm":"Password again",
+    "auth_signup_input_placeholder_email":"E-mail",
+    "auth_signup_passwords_not_match": "Passwords do not match",
+
+    "username":"username",
+    "password":"password",
+    "email":"e-mail",
+    "name":"name",
+    "surname":"name",
+
+    "invalid":"Please enter your {info}",
+    "all_blank":"Please do not leave the required fields blank.",
+    "incornet_pwd_username":"Incorrect username or password.",
+
+    "error":"Error",
+    "success":"Success",
+    "warning":"Warning"
+}

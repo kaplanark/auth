@@ -1,0 +1,45 @@
+{
+    "info":{
+        "name": "Türkçe",
+        "code": "tr"
+    },
+    "rp_title":"Şifrenizi sıfırlayın",
+    "rp_text": "Kullanıcı hesabınızın doğrulanmış e-posta adresini girin, size bir şifre sıfırlama bağlantısı gönderelim.",
+    "rp_btn":"Şifre sıfırlama e-postası gönder",
+    "rp_input_placeholder":"E-posta adresinizi girin",
+    "rp_back_btn":"Giriş sayfasına git",
+
+    "auth_signin_title":"Giriş yap",
+    "auth_signin_text":"Hesabınıza giriş yapın.",
+    "auth_signin_btn":"Giriş yap",
+    "auth_signin_input_placeholder":"Kullanıcı adı veya e-posta adresi",
+    "auth_signin_input_placeholder_pwd":"Parolanızı girin",
+    "auth_signin_forgot_pwd_btn":"Parolanızı mı unuttunuz?",
+
+
+    "auth_signup_title":"Kayıt ol",
+    "auth_signup_text":"Hesabınızı oluşturun.",
+    "auth_signup_btn":"Kayıt ol",
+    "auth_signup_input_placeholder_name":"İsim",
+    "auth_signup_input_placeholder_surname":"Soyisim",
+    "auth_signup_input_placeholder_un":"Kullanıcı adınızı girin",
+    "auth_signup_input_placeholder_pwd":"Parolanızı girin",
+    "auth_signup_input_placeholder_pwd_confirm":"Parolanızı tekrar girin",
+    "auth_signup_input_placeholder_email":"E-posta adresinizi girin",
+    "auth_signup_passwords_not_match": "Parolalar uyuşmuyor",
+
+    "username":"kullanıcı adı",
+    "password":"parola",
+    "email":"e-posta",
+    "name":"isim",
+    "surname":"Soyisim",
+
+    "invalid":"Lütfen {info}nızı girin",
+    "all_blank":"Lütfen zorunlu alanları boş bırakmayın.",
+    "incornet_pwd_username":"Kullanıcı adı veya parola hatalı.",
+
+    "error":"Hata",
+    "success":"Başarılı",
+    "warning":"Uyarı"
+
+}
