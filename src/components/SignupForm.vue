@@ -3,18 +3,15 @@
         <n-space vertical>
             <n-input-group class="mb-2">
                 <n-input v-model:value="data.name" type="text" :placeholder="$t('auth_signup_input_placeholder_name')"
-                    class="w-50" :feedback="nameFeedback">
-                    <!-- <template #prefix>
-                    <n-icon :component="PersonOutline" />
-                </template> -->
+                    class="w-50" clearable>
                 </n-input>
                 <n-input v-model:value="data.surname" type="text"
-                    :placeholder="$t('auth_signup_input_placeholder_surname')" class="w-50" :feedback="surnameFeedback">
+                    :placeholder="$t('auth_signup_input_placeholder_surname')" class="w-50" clearable>
                 </n-input>
             </n-input-group>
             <n-form-item path="username">
                 <n-input v-model:value="data.username" type="text" :placeholder="$t('auth_signup_input_placeholder_un')"
-                    :feedback="usernameFeedback">
+                    clearable>
                     <template #prefix>
                         <n-icon :component="PersonOutline" />
                     </template>
@@ -22,7 +19,7 @@
             </n-form-item>
             <n-form-item path="email">
                 <n-auto-complete v-model:value="data.email" type="mail" :options="emailOptions"
-                    :placeholder="$t('auth_signup_input_placeholder_email')">
+                    :placeholder="$t('auth_signup_input_placeholder_email')" clearable>
                     <template #prefix>
                         <n-icon :component="At" />
                     </template>
@@ -30,15 +27,16 @@
             </n-form-item>
             <n-form-item path="password">
                 <n-input v-model:value="data.password" type="password" show-password-on="mousedown"
-                    :placeholder="$t('auth_signup_input_placeholder_pwd')" :feedback="passwordFeedback">
+                    :placeholder="$t('auth_signup_input_placeholder_pwd')" clearable>
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
                     </template>
                 </n-input>
             </n-form-item>
-            <n-form-item path="password2">
-                <n-input v-model:value="data.password2" type="password" show-password-on="mousedown"
-                    :placeholder="$t('auth_signup_input_placeholder_pwd_confirm')" :feedback="passwordFeedback">
+            <n-form-item path="confirmPassword">
+                <n-input v-model:value="data.confirmPassword" type="password" show-password-on="mousedown"
+                    :disabled="!data.password" @keydown.enter.prevent
+                    :placeholder="$t('auth_signup_input_placeholder_pwd_confirm')" clearable>
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
                     </template>
@@ -55,14 +53,14 @@
     </n-form>
 </template>
 <script>
-import { defineComponent, ref, computed} from 'vue'
+import { defineComponent, ref} from 'vue'
 import { LockClosedOutline, PersonOutline, At } from '@vicons/ionicons5'
 import { useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
 import { genOptions, emailOptions } from '../utils/index'
 import { signupFormRules } from '../rules/index.js'
 import authService from '../services/authService'
-import {nameFeedback,surnameFeedback,usernameFeedback,passwordFeedback} from '../utils/feedbacks/index'
+
 export default defineComponent({
     components: {
         LockClosedOutline,
@@ -71,11 +69,12 @@ export default defineComponent({
     },
     setup() {
         const formRef = ref(null);
-        const data = ref({ name: "", surname: "", email: "", username: "", password: "", password2: "" });
+        const data = ref({ name: "", surname: "", email: "", username: "", password: "", confirmPassword: "" });
         const { commit } = useStore();
         const { t } = useI18n();
         const rules = ref(signupFormRules);
         const signupSpin = ref(false);
+        
         return {
             formRef,
             data,
@@ -83,36 +82,16 @@ export default defineComponent({
             LockClosedOutline,
             PersonOutline,
             At,
-            options: genOptions(),
             emailOptions: emailOptions(data),
             signupSpin,
-
-            nameFeedback: computed(() => {
-                return nameFeedback(data.value.name);
-            }),
-            surnameFeedback: computed(() => {
-                return surnameFeedback(data.value.surname);
-            }),
-            usernameFeedback: computed(() => {
-                return usernameFeedback(data.value.username);
-            }),
-            passwordFeedback: computed(() => {
-                return passwordFeedback(data.value.password);
-            }),
-
             signUp(e) {
                 signupSpin.value = true;
                 e.preventDefault();
                 formRef.value?.validate((errors) => {
                     if (!errors) {
-                        if (data.value.password !== data.value.password2) {
-                            commit('setAlert', { show: true, title: t('warning'), type: 'warning', message: t('auth_signup_passwords_not_match') });
+                        authService.signUp(data.value).then(() => {
                             signupSpin.value = false;
-                        } else {
-                            authService.signUp(data.value).then(() => {
-                                signupSpin.value = false;
-                            });
-                        }
+                        });
                     } else {
                         commit("setAlert", { show: true, title: t('warning'), type: "warning", message: t('all_blank') });
                         signupSpin.value = false;

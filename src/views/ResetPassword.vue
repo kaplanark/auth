@@ -10,7 +10,12 @@
                         <p class="mb-2">
                             {{ $t("rp_text") }}
                         </p>
-                        <n-input v-model:value="email" type="email" :placeholder="$t('rp_input_placeholder')" />
+                        <n-auto-complete v-model:value="data.email" type="mail" :options="emailOptions"
+                            :placeholder="$t('rp_input_placeholder')" clearable>
+                            <template #prefix>
+                                <n-icon :component="At" />
+                            </template>
+                        </n-auto-complete>
                         <template #footer>
                             <n-button type="primary" strong secondary class="w-100" @click="resetPassword">
                                 {{ $t("rp_btn") }}
@@ -33,15 +38,19 @@
   
   <script>
   import { defineComponent, ref } from 'vue'
-  import { ArrowBack } from '@vicons/ionicons5'
+  import { ArrowBack,At } from '@vicons/ionicons5'
+  import { emailOptions } from '../utils/index'
   export default defineComponent({
       components: {
-          ArrowBack
+          ArrowBack,At
       },
       setup() {
+        const data = ref({email: ""});
           return {
-              email: ref(''),
-              ArrowBack
+              data,
+              ArrowBack,
+              At,
+              emailOptions: emailOptions(data),
           }
       },
       methods: {

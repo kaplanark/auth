@@ -1,5 +1,7 @@
 import i18n from "../locales/index";
-const {t} = i18n.global;
+const { t } = i18n.global;
+
+let  password = "";
 const rules = {
     username: {
         required: true,
@@ -17,15 +19,28 @@ const rules = {
     },
     password: {
         required: true,
-        message: () => {
-            return t('invalid', { info: t('password') });
+        validator(rule, value) {
+            password = value;
+            if (!value) {
+                return new Error(t('invalid', { info: t('password') }));
+            } else if (value.length < 8) {
+                return new Error(t('password_be_short'));
+            } else if (value.length > 20) {
+                return new Error(t('password_be_long'));
+            }
+            return true;
         },
         trigger: "blur"
     },
-    password2: {
+    confirmPassword: {
         required: true,
-        message: () => {
-            return t('invalid', { info: t('password') });
+        validator(rule, value) {
+            if (!value) {
+                return new Error(t('confirm_password'));
+            } else if (value !== password) {
+                return new Error(t('password_not_match'));
+            }
+            return true;
         },
         trigger: "blur"
     },

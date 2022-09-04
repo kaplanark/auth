@@ -2,7 +2,7 @@
     <n-form ref="formRef" :model="data" :rules="rules" :show-label="false">
         <n-space vertical>
             <n-form-item path="email">
-                <n-input v-model:value="data.email" type="email" :placeholder="$t('auth_signin_input_placeholder')">
+                <n-input v-model:value="data.email" type="email" :placeholder="$t('auth_signin_input_placeholder')" clearable>
                     <template #prefix>
                         <n-icon :component="PersonOutline" />
                     </template>
@@ -12,7 +12,7 @@
             </n-button>
             <n-form-item path="password">
                 <n-input v-model:value="data.password" type="password" show-password-on="mousedown"
-                    :placeholder="$t('auth_signin_input_placeholder_pwd')" :maxlength="16">
+                    :placeholder="$t('auth_signin_input_placeholder_pwd')" :maxlength="20" clearable>
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
                     </template>

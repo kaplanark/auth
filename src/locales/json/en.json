@@ -24,9 +24,8 @@
     "auth_signup_input_placeholder_surname":"Surname",
     "auth_signup_input_placeholder_un":"Username",
     "auth_signup_input_placeholder_pwd":"Password",
-    "auth_signup_input_placeholder_pwd_confirm":"Password again",
+    "auth_signup_input_placeholder_pwd_confirm":"Confirm password",
     "auth_signup_input_placeholder_email":"E-mail",
-    "auth_signup_passwords_not_match": "Passwords do not match",
 
     "username":"username",
     "password":"password",
@@ -35,8 +34,12 @@
     "surname":"name",
 
     "invalid":"Please enter your {info}",
+    "confirm_password":"Please confirm your password",
     "all_blank":"Please do not leave the required fields blank.",
     "incornet_pwd_username":"Incorrect username or password.",
+    "password_be_short":"Password must be at least 8 characters long",
+    "password_be_long":"Password must be less than 20 characters long",
+    "password_not_match":"Passwords do not match",
 
     "error":"Error",
     "success":"Success",

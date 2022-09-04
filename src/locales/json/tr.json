@@ -23,10 +23,9 @@
     "auth_signup_input_placeholder_name":"İsim",
     "auth_signup_input_placeholder_surname":"Soyisim",
     "auth_signup_input_placeholder_un":"Kullanıcı adınızı girin",
-    "auth_signup_input_placeholder_pwd":"Parolanızı girin",
-    "auth_signup_input_placeholder_pwd_confirm":"Parolanızı tekrar girin",
+    "auth_signup_input_placeholder_pwd":"Şifrenizi girin",
+    "auth_signup_input_placeholder_pwd_confirm":"Şifreyi onayla",
     "auth_signup_input_placeholder_email":"E-posta adresinizi girin",
-    "auth_signup_passwords_not_match": "Parolalar uyuşmuyor",
 
     "username":"kullanıcı adı",
     "password":"parola",
@@ -35,8 +34,12 @@
     "surname":"Soyisim",
 
     "invalid":"Lütfen {info}nızı girin",
+    "confirm_password":"Lütfen parolanızı onaylayın",
     "all_blank":"Lütfen zorunlu alanları boş bırakmayın.",
     "incornet_pwd_username":"Kullanıcı adı veya parola hatalı.",
+    "password_be_short":"Şifre en az 8 karakter uzunluğunda olmalıdır",
+    "password_be_long":"Şifre en fazla 20 karakter uzunluğunda olmalıdır",
+    "password_not_match":"Parolalar uyuşmuyor",
 
     "error":"Hata",
     "success":"Başarılı",
