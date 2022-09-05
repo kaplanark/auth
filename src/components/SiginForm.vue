@@ -1,8 +1,9 @@
 <template>
-    <n-form ref="formRef" :model="data" :rules="rules" :show-label="false">
+    <n-form ref="formRef" :model="user" :rules="rules" :show-label="false">
         <n-space vertical>
             <n-form-item path="email">
-                <n-input v-model:value="data.email" type="email" :placeholder="$t('auth_signin_input_placeholder')" clearable>
+                <n-input v-model:value="user.email" type="email" :placeholder="$t('auth_signin_input_placeholder')"
+                    clearable>
                     <template #prefix>
                         <n-icon :component="PersonOutline" />
                     </template>
@@ -11,7 +12,7 @@
             <n-button text class="float-right fs-xs" @click="resetPassword">{{ $t('auth_signin_forgot_pwd_btn') }}
             </n-button>
             <n-form-item path="password">
-                <n-input v-model:value="data.password" type="password" show-password-on="mousedown"
+                <n-input v-model:value="user.password" type="password" show-password-on="mousedown"
                     :placeholder="$t('auth_signin_input_placeholder_pwd')" :maxlength="20" clearable>
                     <template #prefix>
                         <n-icon :component="LockClosedOutline" />
@@ -29,13 +30,12 @@
     </n-form>
 </template>
 <script>
-import { defineComponent, ref, toRaw } from 'vue'
+import { defineComponent, ref} from 'vue'
 import { LockClosedOutline, PersonOutline } from '@vicons/ionicons5'
 import { useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
 import { signinFormRules } from '../rules/index'
-import authService from '../services/authService'
-import { set } from 'lodash'
+import { useRouter } from 'vue-router'
 export default defineComponent({
     components: {
         LockClosedOutline,
@@ -43,27 +43,35 @@ export default defineComponent({
     },
     setup() {
         const formRef = ref(null);
-        const { commit,state } = useStore();
+        const { commit ,dispatch } = useStore();
         const { t } = useI18n();
-        const data = ref({ email: "", password: "" });
+        const user = ref({email: "", password: ""});
         const rules = ref(signinFormRules);
         const signinSpin = ref(false);
+        const router = useRouter()
+        const resetPassword = () => {
+            router.push('/reset-password')
+        }
         return {
             formRef,
-            data,
+            user,
             rules,
             LockClosedOutline,
             PersonOutline,
             signinSpin,
+            resetPassword,
             signIn(e) {
                 signinSpin.value = true;
                 e.preventDefault();
                 formRef.value?.validate((errors) => {
                     if (!errors) {
-                        authService.signIn(toRaw(data.value)).then(() => {
-                            commit('setUser', data.value);
-                        }).catch(() => {
-                            commit('setAlert', { show: true, type: 'error', title: t('error'), message: 'Giriş başarısız' });
+                        dispatch('auth/signIn', user.value)
+                        .then(() => {
+                            router.push('/profile');
+                        })
+                        .catch((error) => {
+                            commit('setAlert', { show: true, title: t('warning'), type: 'error', message: error });
+                        }).finally(() => {
                             signinSpin.value = false;
                         });
                     } else {
@@ -72,11 +80,6 @@ export default defineComponent({
                     }
                 });
             },
-        }
-    },
-    methods: {
-        resetPassword() {
-            this.$router.push('/reset-password')
         }
     },
 })
