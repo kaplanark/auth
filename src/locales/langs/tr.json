@@ -30,6 +30,7 @@
     "username":"kullanıcı adı",
     "password":"parola",
     "email":"e-posta",
+    "email_or_username":"e-posta veya kullanıcı adı",
     "name":"isim",
     "surname":"Soyisim",
 
@@ -43,6 +44,11 @@
 
     "error":"Hata",
     "success":"Başarılı",
-    "warning":"Uyarı"
+    "warning":"Uyarı",
+    "message":"Mesaj",
+
+    "not_found":"404 Sayfa Bulunamadı",
+    "not_found_text":"Aradığınız sayfa kaldırılmış, adı değiştirilmiş veya geçici olarak kullanılamıyor olabilir.",
+    "go_back":"Geri dön"
 
 }

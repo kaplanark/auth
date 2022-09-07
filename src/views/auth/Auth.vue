@@ -47,8 +47,8 @@
   
   <script>
   import { defineComponent } from 'vue'
-  import SiginForm from '../components/SiginForm.vue'
-  import SignupForm from '../components/SignupForm.vue'
+  import SiginForm from '../../components/auth/SiginForm.vue'
+  import SignupForm from '../../components/auth/SignupForm.vue'
   import { LogoGithub, LogoTwitter } from '@vicons/ionicons5'
 
   export default defineComponent({

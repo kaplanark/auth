@@ -38,6 +38,18 @@ export const auth = {
                 }
             );
         },
+        resetPass({ commit }, user) {
+            return AuthService.resetPass(user).then(
+                (response) => {
+                    // commit("resetPassSuccess");
+                    return Promise.resolve(response.data);
+                },
+                (error) => {
+                    // commit("resetPassFailure");
+                    return Promise.reject(error);
+                }
+            );
+        },
     },
     mutations: {
         signInSuccess(state, user) {
@@ -58,5 +70,21 @@ export const auth = {
         signUpFailure(state) {
             state.status.loggedIn = false;
         },
+        // resetPassSuccess(state) {
+        //     state.setAlert = {
+        //         show: true,
+        //         title: "Success",
+        //         type: "success",
+        //         message: "Check your email for password reset instructions.",
+        //     };
+        // },
+        // resetPassFailure(state) {
+        //     state.setAlert = {
+        //         show: true,
+        //         title: "Error",
+        //         type: "error",
+        //         message: "Something went wrong. Please try again.",
+        //     };
+        // }
     },
 };

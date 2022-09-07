@@ -30,6 +30,7 @@
     "username":"username",
     "password":"password",
     "email":"e-mail",
+    "email_or_username":"e-mail or username",
     "name":"name",
     "surname":"name",
 
@@ -43,5 +44,10 @@
 
     "error":"Error",
     "success":"Success",
-    "warning":"Warning"
+    "warning":"Warning",
+    "message":"Message",
+
+    "page_not_found":"404 Not Found",
+    "page_not_found_desc":"The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "go_back":"Go back"
 }

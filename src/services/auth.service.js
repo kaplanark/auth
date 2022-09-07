@@ -5,7 +5,7 @@ class AuthService {
     async signIn(user) {
         return await axios
             .post(API_URL + "/auth/signin", {
-                email: user.email,
+                login: user.login,
                 password: user.password,
             })
             .then((response) => {
@@ -28,6 +28,12 @@ class AuthService {
             username: user.username,
             email: user.email,
             password: user.password,
+        });
+    }
+
+    async resetPass(user) {
+        return await axios.post(API_URL + "/auth/reset", {
+            email: user.email,
         });
     }
 }

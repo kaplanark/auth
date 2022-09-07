@@ -8,20 +8,61 @@ export const user = {
         userData: userData,
     },
     actions: {
-        getPublicContent({ commit }) {
-            return UserService.getPublicContent();
+        getUser({ commit }) {
+            return UserService.getUser().then(
+                (data) => {
+                    commit("getUserSuccess", data);
+                    return Promise.resolve(data);
+                },
+                (error) => {
+                    commit("getUserFailure");
+                    return Promise.reject(error);
+                }
+            );
         },
-        getUserBoard({ commit }) {
-            return UserService.getUserBoard();
+        updateUser({ commit }) {
+            return UserService.updateUser().then(
+                (data) => {
+                    commit("updateUserSuccess", data);
+                    return Promise.resolve(data);
+                },
+                (error) => {
+                    commit("updateUserFailure");
+                    return Promise.reject(error);
+                }
+            );
         },
-        getModeratorBoard({ commit }) {
-            return UserService.getModeratorBoard();
-        },
-        getAdminBoard({ commit }) {
-            return UserService.getAdminBoard();
+        deleteUser({ commit }) {
+            return UserService.deleteUser().then(
+                (data) => {
+                    commit("deleteUserSuccess", data);
+                    return Promise.resolve(data);
+                },
+                (error) => {
+                    commit("deleteUserFailure");
+                    return Promise.reject(error);
+                }
+            );
         },
     },
     mutations: {
-        
+        getUserSuccess(state, data) {
+            state.userData = data;
+        },
+        getUserFailure(state) {
+            state.userData = null;
+        },
+        updateUserSuccess(state, data) {
+            state.userData = data;
+        },
+        updateUserFailure(state) {
+            state.userData = null;
+        },
+        deleteUserSuccess(state, data) {
+            state.userData = data;
+        },
+        deleteUserFailure(state) {
+            state.userData = null;
+        }
     },
 };

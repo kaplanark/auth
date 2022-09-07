@@ -1,6 +1,6 @@
 import { createI18n } from 'vue-i18n'
-import tr from './json/tr.json';
-import en from './json/en.json';
+import tr from './langs/tr.json';
+import en from './langs/en.json';
 
 const messages = {tr,en};
 if (!localStorage.getItem("locale")) {

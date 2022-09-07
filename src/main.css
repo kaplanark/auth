@@ -3,62 +3,73 @@
   margin: 0;
   box-sizing: border-box;
 }
-/* .login-content {
-  background-color: #101014;
-  opacity: 0.9;
-  background-image: radial-gradient(#7b7b7b 0.25px, #101014 0.25px);
-  background-size: 5px 5px;
-} */
+
 .theme-button {
   position: fixed;
   right: 32px;
   bottom: 32px;
 }
+
 .h-100 {
   height: 100%;
 }
+
 .d-flex {
   display: flex;
 }
+
 .align-center {
   align-items: center;
 }
+
 .justify-content-center {
-  justify-content: center;
+  justify-content: center !important;
 }
+
 .justify-content-end {
   justify-content: flex-end;
 }
+
 .mb-2 {
   margin-bottom: 16px;
 }
+
 .mb-1 {
   margin-bottom: 8px;
 }
+
 .text-link {
   color: rgb(131, 131, 131);
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
+
 .shadow-sm {
   box-shadow: rgba(58, 58, 58, 0.05) 0px 0px 0px 1px;
 }
+
 .fs-xs {
   font-size: 12px;
 }
+
 .w-100 {
   width: 100%;
 }
+
 .w-50 {
   width: 50%;
 }
+
 .text-edn {
   text-align: end;
 }
+
 .d-block {
   display: block;
 }
+
 .float-right {
   float: right;
 }

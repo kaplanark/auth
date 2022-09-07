@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import { auth } from './modules/auth.module'
+import { user } from './modules/user.module'
 const store = createStore({
     state: {
         alert: {
@@ -14,14 +15,12 @@ const store = createStore({
             state.alert = payload;
             payload.show && setTimeout(() => {
                 state.alert.show = false;
-            }, 5000);
+            }, 10000);
         }
     },
-    actions: {
-
-    },
     modules: {
-        auth
+        auth,
+        user
     }
 })
 export default store

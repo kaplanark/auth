@@ -1,10 +1,10 @@
 import i18n from "../locales/index";
 const {t} = i18n.global;
 const rules = {
-    email: {
+    login: {
         required: true,
         message: () => {
-            return t('invalid', { info: t('email') });
+            return t('invalid', { info: t('email_or_username') });
         },
         trigger: "blur"
     },

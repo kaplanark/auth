@@ -1,18 +1,28 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-const API_URL = 'http://localhost:500/api/auth/';
+const API_URL = 'http://localhost:500/api/';
 class UserService {
-    getPublicContent() {
-        return axios.get(API_URL + 'all');
+    async getUser() {
+        return await axios
+            .get(API_URL + 'user', { headers: authHeader() })
+            .then((response) => {
+                return response.data;
+            })
     }
-    getUserBoard() {
-        return axios.get(API_URL + 'user', { headers: authHeader() });
+    async updateUser() {
+        return await axios
+            .post(API_URL + 'user', { headers: authHeader() })
+            .then((response) => {
+                return response.data;
+            })
     }
-    getModeratorBoard() {
-        return axios.get(API_URL + 'mod', { headers: authHeader() });
+    async deleteUser() {
+        return await axios
+            .delete(API_URL + 'user', { headers: authHeader() })
+            .then((response) => {
+                return response.data;
+            })
     }
-    getAdminBoard() {
-        return axios.get(API_URL + 'admin', { headers: authHeader() });
-    }
+
 }
 export default new UserService();

@@ -5,7 +5,9 @@
                 <n-grid-item span="22 s:12 m:10 l:8 xl:8" offset="1 s:6 m:7 l:8 xl:8">
                     <n-card :title="$t('rp_title')" class="shadow-sm">
                         <template #cover>
-                            <img src="../assets/bg.png">
+                            <n-alert :bordered="false" :title="alert.title" :type="alert.type" v-show="alert.show">
+                                {{ alert.message }}
+                            </n-alert>
                         </template>
                         <p class="mb-2">
                             {{ $t("rp_text") }}
@@ -39,26 +41,49 @@
   <script>
   import { defineComponent, ref } from 'vue'
   import { ArrowBack,At } from '@vicons/ionicons5'
-  import { emailOptions } from '../utils/index'
+  import { emailOptions } from '../../utils/index'
+  import { useStore } from 'vuex'
   export default defineComponent({
       components: {
           ArrowBack,At
       },
       setup() {
         const data = ref({email: ""});
+        const {dispatch,commit} = useStore();
           return {
               data,
               ArrowBack,
               At,
               emailOptions: emailOptions(data),
+              resetPassword() {
+                  dispatch("auth/resetPass", data.value.email)
+                  .then(data => {
+                      commit("setAlert", {
+                          show: true,
+                          title: "Success",
+                          message: data.message,
+                          type: "success"
+                      });
+                  })
+                    .catch((err) => {
+                        commit("setAlert", {
+                            show: true,
+                            title: "Error",
+                            message: err.message,
+                            type: "error"
+                        });
+                    })
+              },
           }
       },
       methods: {
-          resetPassword() {
-  
-          },
           gosingIn() {
-              this.$router.push('/authentication')
+              this.$router.push('/auth')
+          }
+      },
+      computed: {
+          alert() {
+              return this.$store.state.alert
           }
       },
   })

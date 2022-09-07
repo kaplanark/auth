@@ -6,11 +6,6 @@ import naive from 'naive-ui'
 import i18n from './locales/index.js'
 import './main.css'
 
-// router.beforeEach((to, from, next) => {
-//     if (to.meta.requiresAuth) {
-//         next()
-//     }
-// })
 
 const app = createApp(App);
 app.use(store)

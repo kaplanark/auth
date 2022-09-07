@@ -57,8 +57,8 @@ import { defineComponent, ref} from 'vue'
 import { LockClosedOutline, PersonOutline, At } from '@vicons/ionicons5'
 import { useStore } from 'vuex'
 import { useI18n } from 'vue-i18n'
-import { emailOptions } from '../utils/index'
-import { signupFormRules } from '../rules/index.js'
+import { emailOptions } from '../../utils/index'
+import { signupFormRules } from '../../rules/index.js'
 
 export default defineComponent({
     components: {
@@ -93,8 +93,7 @@ export default defineComponent({
                                 commit("setAlert", { show: true, title: t('success'), type: "success", message: data.message });
                             })
                             .catch((error) => {
-                                //data mesajı düzenlenecek
-                                commit("setAlert", { show: true, title: t('error'), type: "error", message: error });
+                                commit("setAlert", { show: true, title: t('error'), type: "error", message: error.message });
                             })
                             .finally(() => {
                                 signupSpin.value = false;
