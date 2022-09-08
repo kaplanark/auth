@@ -68,7 +68,7 @@ export default defineComponent({
                         dispatch('auth/signIn', user.value)
                             .then(data => {
                                 if (data.message) {
-                                    commit('setAlert', { show: true, title: t('info'), type: 'info', message: data.message });
+                                    commit('setAlert', { show: true, title: t('warning'), type: 'warning', message: data.message });
                                 }
                                 router.push('/profile')
                             })
